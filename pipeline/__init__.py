@@ -28,12 +28,12 @@ def RunNodejsScan(args):
 
 def RunNpmAudit(args):
     logging.info("NpmAudit has been started!")
-    cmd = "safety check -r {0} --output json".format(npm_audit_path)
+    #cmd = "safety check -r {0} --output json".format(npm_audit_path)
     #process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
     #stdout, stderr = process.communicate()
     #logging.info(stdout)
     #logging.info(stderr)
-    #logging.info("NpmAudit has been finished!")
+    logging.info("NpmAudit has been finished!")
     logging.info("==================================================")
 
     

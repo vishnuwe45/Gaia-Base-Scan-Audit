@@ -1,1 +1,1 @@
-# Python SAST SCA Pipeline
+# NodeJS SAST SCA Pipeline

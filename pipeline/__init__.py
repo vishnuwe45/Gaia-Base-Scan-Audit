@@ -7,50 +7,39 @@ import git
 
 path_parent = os.getcwd()
 
-safety_path = path_parent+"/Vulnerable-Flask-App/app/requirements.txt"
-pyraider_path = path_parent+"/Vulnerable-Flask-App/app/requirements.txt"
-bandit_path = path_parent+"/Vulnerable-Flask-App/app/app.py"
+nodejs_path = path_parent+"/Cut-The-Funds-NodeJS"
+npm_audit_path = path_parent+"/Cut-The-Funds-NodeJS"
 
 def Clone(args):
     logging.info("Cloning Latest Source started!")
     time.sleep(5)
-    git.Repo.clone_from('https://github.com/we45/Vulnerable-Flask-App.git', 'Vulnerable-Flask-App')
+    git.Repo.clone_from('https://github.com/we45/Cut-The-Funds-NodeJS.git', 'Cut-The-Funds-NodeJS')
     logging.info("Cloning Latest Source finished!")
     
-def RunBandit(args):
-    logging.info("Bandit has been started!")
-    cmd = "bandit -r -f json {0}".format(bandit_path)
-    process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
-    stdout, stderr = process.communicate()
-    logging.info(stdout)
-    logging.info(stderr)
-    logging.info("Bandit has been finished!")
+def RunNodejsScan(args):
+    logging.info("NodejsScan has been started!")
+    #cmd = "bandit -r -f json {0}".format(nodejs_path)
+    #process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
+    #stdout, stderr = process.communicate()
+    #logging.info(stdout)
+    #logging.info(stderr)
+    logging.info("NodejsScan has been finished!")
     logging.info("==================================================")
 
-def RunSafety(args):
-    logging.info("Safety has been started!")
-    cmd = "safety check -r {0} --output json".format(safety_path)
-    process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
-    stdout, stderr = process.communicate()
-    logging.info(stdout)
-    logging.info(stderr)
-    logging.info("Safety has been finished!")
+def RunNpmAudit(args):
+    logging.info("NpmAudit has been started!")
+    #cmd = "safety check -r {0} --output json".format(npm_audit_path)
+    #process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
+    #stdout, stderr = process.communicate()
+    #logging.info(stdout)
+    #logging.info(stderr)
+    #logging.info("NpmAudit has been finished!")
     logging.info("==================================================")
 
-def RunPyraider(args):
-    logging.info("Pyraider has been started!")
-    cmd = "pyraider check -f {0}".format(pyraider_path)
-    process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
-    stdout, stderr = process.communicate()
-    logging.info(stdout)
-    logging.info(stderr)
-    logging.info("Pyraider has been finished!")
-    logging.info("==================================================")
-
+    
 def main():
     logging.basicConfig(level=logging.INFO)
     clone = sdk.Job("Clone Source", "Cloning Latest Source", Clone)
-    runbandit = sdk.Job("Run Bandit Scan", "Running Bandit Scan", RunBandit,["Clone Source"])
-    runsafety = sdk.Job("Run Safety Scan", "Running Safety Scan", RunSafety, ["Run Bandit Scan"])
-    runpyraider = sdk.Job("Run Pyraider Scan", "Running Pyraider Scan", RunPyraider, ["Run Safety Scan"])
+    runnodejsscan = sdk.Job("Run NodeJS Scan", "Running Bandit Scan", RunNodejsScan,["Clone Source"])
+    runnpm = sdk.Job("Run Npm Audit Scan", "Running Safety Scan", RunNpmAudit, ["Run NodeJS Scan"])
     sdk.serve([clone, runbandit, runsafety, runpyraider])

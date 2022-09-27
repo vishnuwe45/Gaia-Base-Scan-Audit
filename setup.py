@@ -8,5 +8,5 @@ setup(name='testpipeline',
       install_requires=[
             'gaiasdk>=0.0.16',
             'nodejsscan==3.7',
-            'PyGithub==1.55'
+            'GitPython==3.1.27'
       ])

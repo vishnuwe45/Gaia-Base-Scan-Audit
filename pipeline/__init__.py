@@ -18,7 +18,7 @@ def Clone(args):
     
 def RunNodejsScan(args):
     logging.info("NodejsScan has been started!")
-    #cmd = "npm audit --json --prefix {0}".format(nodejs_path)
+    cmd = "nodejsscan -d {0}".format(nodejs_path)
     process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
     stdout, stderr = process.communicate()
     logging.info(stdout)

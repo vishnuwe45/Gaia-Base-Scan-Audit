@@ -18,21 +18,21 @@ def Clone(args):
     
 def RunNodejsScan(args):
     logging.info("NodejsScan has been started!")
-    #cmd = "bandit -r -f json {0}".format(nodejs_path)
-    #process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
-    #stdout, stderr = process.communicate()
-    #logging.info(stdout)
-    #logging.info(stderr)
+    #cmd = "npm audit --json --prefix {0}".format(nodejs_path)
+    process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
+    stdout, stderr = process.communicate()
+    logging.info(stdout)
+    logging.info(stderr)
     logging.info("NodejsScan has been finished!")
     logging.info("==================================================")
 
 def RunNpmAudit(args):
     logging.info("NpmAudit has been started!")
-    #cmd = "safety check -r {0} --output json".format(npm_audit_path)
-    #process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
-    #stdout, stderr = process.communicate()
-    #logging.info(stdout)
-    #logging.info(stderr)
+    cmd = "npm audit --json --prefix {0}".format(npm_audit_path)
+    process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
+    stdout, stderr = process.communicate()
+    logging.info(stdout)
+    logging.info(stderr)
     logging.info("NpmAudit has been finished!")
     logging.info("==================================================")
 

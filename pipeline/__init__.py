@@ -42,4 +42,4 @@ def main():
     clone = sdk.Job("Clone Source", "Cloning Latest Source", Clone)
     runnodejsscan = sdk.Job("Run NodeJS Scan", "Running Bandit Scan", RunNodejsScan,["Clone Source"])
     runnpm = sdk.Job("Run Npm Audit Scan", "Running Safety Scan", RunNpmAudit, ["Run NodeJS Scan"])
-    sdk.serve([clone, runsafety, runpyraider])
+    sdk.serve([clone, runnodejsscan, runnpm])

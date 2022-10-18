@@ -13,6 +13,14 @@ npm_audit_path = path_parent+"/Cut-The-Funds-NodeJS"
 def Clone(args):
     logging.info("Cloning Latest Source started!")
     time.sleep(5)
+    
+    cmd = "rm -rf {0} | true".format(nodejs_path)
+    process = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
+    stdout, stderr = process.communicate()
+    logging.info(stdout)
+    logging.info(stderr)
+    logging.info("Cleared previous source code")
+    
     git.Repo.clone_from('https://github.com/we45/Cut-The-Funds-NodeJS.git', 'Cut-The-Funds-NodeJS')
     logging.info("Cloning Latest Source finished!")
     

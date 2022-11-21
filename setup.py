@@ -7,6 +7,9 @@ setup(name='testpipeline',
       author_email='pipelineauthor@mail.com',
       install_requires=[
             'gaiasdk>=0.0.16',
-            'nodejsscan==3.7',
+            'sslyze==5.0.6',
+            'securityheaders==0.0.1',
+            'sqlmap==1.6.11',
+            'BirDuster==1.0',
             'GitPython==3.1.27'
       ])

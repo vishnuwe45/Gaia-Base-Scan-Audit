@@ -1,4 +1,4 @@
-# NodeJS SAST SCA Pipeline
+# Base Scan Audit Pipeline
 
 ## Build Dockerfile
 

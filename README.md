@@ -1,5 +1,11 @@
 # Base Scan Audit Pipeline
 
+## Run Vulnerable Webgoat
+
+```bash
+docker run -p 8081:8080 -t webgoat/webgoat-8.0
+```
+
 ## Build Dockerfile
 
 ```bash
